@@ -1,0 +1,50 @@
+body{
+	background-color: lightblue;
+}
+.container{
+	width: 500px;
+	margin: auto;
+}
+.board {
+	width: 1000px;
+	height: 100px;
+	margin: auto;
+}
+.row{
+	height: 56px;
+	width: 500px;
+	margin: auto;
+}
+.cell{
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	background-color: #345beb;
+	float: left;
+	margin: 2px;
+	border-radius: 10px;
+}
+.ice{
+	background-image: url("ice.png");
+}
+.arrowList{
+	width: 1000px;
+	height: 50px;
+	border: 1px solid black;
+}
+.arrow{
+	width: 40px;
+	height: 30px;
+}
+.north{
+	rotate: -90deg;
+}
+.east{
+	rotate: 0deg;
+}
+.south{
+	rotate: 90deg;
+}
+.west{
+	rotate: 180deg;
+}
