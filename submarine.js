@@ -91,7 +91,6 @@ function createRow(parent, length){
 //calculations
 function checkPositions(){
 	for (var i = 0; i < possiblePositions.length; i++) {
-		console.log("Checking cell index " + possiblePositions[i]);
 		if($(".cell")[possiblePositions[i]].classList.contains("ice")){
 			possiblePositions.splice(i, 1); //removes index with ice
 			i--;
@@ -100,7 +99,6 @@ function checkPositions(){
 			$(".cell")[possiblePositions[i]].classList.add("target");
 		}
 	}
-	console.log(possiblePositions);
 }
 function checkMove(direction){
 	let modifier = 0;
@@ -109,22 +107,31 @@ function checkMove(direction){
 	if(direction == "s"){modifier = boardDims}
 	if(direction == "n"){modifier = -boardDims}
 
+	console.log("Modifier: " + modifier);
 	for(var i = 0; i < possiblePositions.length; i++){
 		$(".cell")[possiblePositions[i]].classList.remove("target");
 		possiblePositions[i] += modifier;
 		if(possiblePositions[i] >= boardDims*boardDims){
 			console.log(possiblePositions[i] + " deleted due to condition 1");
 			possiblePositions.splice(i, 1);
+			i--;
 		}
 		else if(possiblePositions[i] < 0){
 			console.log(possiblePositions[i] + " deleted due to condition 2");
 			possiblePositions.splice(i, 1);
+			i--;
 		}
-		else if(possiblePositions[i] / boardDims != (possiblePositions[i] - modifier) / boardDims){
-			console.log(possiblePositions[i] + " " + boardDims);
+		else if(Math.floor(possiblePositions[i] / boardDims) != Math.floor((possiblePositions[i] - modifier) / boardDims)){
+			console.log(possiblePositions[i] + "/" + boardDims + " = " + Math.floor(possiblePositions[i] / boardDims) + ", not " + Math.floor((possiblePositions[i] - modifier) / boardDims));
 			possiblePositions.splice(i, 1);
+			i--;
+		}
+		else if($(".cell")[possiblePositions[i]].classList.contains("ice")){
+			possiblePositions.splice(i, 1);
+			i--;
 		}
 		else{
+			console.log(possiblePositions[i] + " is good");
 			$(".cell")[possiblePositions[i]].classList.add("target");
 		}
 	};
